@@ -7,6 +7,6 @@ export class OrcamentosService {
   orcamentosUrl: string;
 
   constructor() {
-    this.orcamentosUrl = `${environment.apiUrl}/orcamentos`
+    this.orcamentosUrl = `${environment.apiUrl}/orcamentos`;
   }
 }

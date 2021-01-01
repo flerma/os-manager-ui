@@ -7,6 +7,6 @@ export class ClientesService {
   clientesUrl: string;
 
   constructor() {
-    this.clientesUrl = `${environment.apiUrl}/clientes`
+    this.clientesUrl = `${environment.apiUrl}/clientes`;
   }
 }

@@ -1,0 +1,70 @@
+<div class="container">
+
+  <div *ngIf="orcamentoForm.invalid && orcamentoForm.dirty"
+    class="alert alert-danger">Preencha todos os campos corretamente.</div>
+
+  <form #orcamentoForm="ngForm" (ngSubmit)="salvar(orcamentoForm)">
+
+      <div class="p-grid">
+
+        <div class="p-col-12">
+          <h1>Novo Orçamento</h1>
+        </div>
+
+        <div class="p-col-12 p-md-6 ui-fluid">
+          <label>Cliente </label>
+          <p-dropdown name="cliente" [options]="clientes" [filter]="true"
+              [(ngModel)]="cliente" placeholder="Selecione"></p-dropdown>
+        </div>
+
+        <div class="p-col-12 p-md-6 ui-fluid">
+          <label>Data do Agendamento </label>
+          <p-calendar name="dataAgendamento" dateFormat="dd/mm/yy"
+              [(ngModel)]="dataAgendamento"
+              [inline]="false" [readonlyInput]="false"
+              [showIcon]="true"></p-calendar>
+        </div>
+
+        <div class="p-col-12 p-md-6 ui-fluid">
+          <label>Tipo de Serviço </label>
+          <p-dropdown name="tipoServico" [options]="tiposServico" [filter]="true"
+              [(ngModel)]="tipoServico" placeholder="Selecione"></p-dropdown>
+        </div>
+
+        <div class="p-col-12 p-md-6 ui-fluid">
+          <label>Status do Orçamento </label>
+          <p-dropdown name="statusOrcamento" [options]="listaStatusOrcamento" [filter]="true"
+              [(ngModel)]="statusOrcamento" placeholder="Selecione"></p-dropdown>
+        </div>
+
+        <div class="p-col-12 p-md-6 ui-fluid">
+          <label>Valor </label>
+          <input name="valor" type="text" pInputText currencyMask placeholder="0,00"
+              [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative: false }"
+              [(ngModel)]="valor">
+        </div>
+
+        <div class="p-col-12 p-md-6 ui-fluid">
+          <label>Data da Execução </label>
+          <p-calendar name="dataExecucao" dateFormat="dd/mm/yy" [showIcon]="true"
+              [(ngModel)]="dataExecucao"></p-calendar>
+        </div>
+
+        <div class="p-col-12 ui-fluid">
+          <label>Descrição </label>
+          <textarea name="descricao" [rows]="3" pInputTextarea autoResize="autoResize"
+              [(ngModel)]="descricao"></textarea>
+        </div>
+
+        <div class="p-col-1">
+          <button pButton type="submit" label="salvar"></button>
+        </div>
+
+        <div class="p-col-3">
+          <button pButton type="button" label="Novo" class="ui-button-info"></button>
+          <label style="margin-left: 13px;"><a  routerLink="/orcamentos"> Voltar para pesquisa</a></label>
+        </div>
+
+      </div>
+  </form>
+</div>

@@ -1,0 +1,89 @@
+<div class="container">
+
+  <div auto-complete="false" *ngIf=""
+    class="alert alert-danger">Preencha todos os campos corretamente.</div>
+
+  <form #clienteForm="ngForm" (ngSubmit)="salvar(clienteForm)">
+
+      <div class="p-grid">
+
+        <div class="p-col-12">
+          <h1>Novo Cliente</h1>
+        </div>
+
+        <div class="p-col-12 p-md-9 ui-fluid">
+          <label>Nome </label>
+          <input type="text" pInputText class="form-control" name="nome"
+              ngModel #nome="ngModel" required="true" minlength="5">
+              <app-message [controle]="nome" error="required" texto="Informe o nome"></app-message>
+              <app-message [controle]="nome" error="minlength" texto="Minimo de {{ nome.errors?.minlength?.requiredLength }} caracteres"></app-message>
+        </div>
+
+        <div class="p-col-12 p-md-3 ui-fluid">
+          <label>Status </label>
+          <p-dropdown name="status" [options]="listaStatus" [filter]="true" class="form-control"
+              ngModel #status="ngModel" placeholder="Selecione" required="true"></p-dropdown>
+        </div>
+
+        <div class="p-col-12 p-md-2 ui-fluid">
+          <label>Cep </label>
+          <p-inputMask mask="99999-999" name="cep" class="form-control"
+              ngModel #cep="ngModel" required="true"></p-inputMask>
+              <app-message [controle]="cep" error="required" texto="Informe o cep"></app-message>
+        </div>
+
+        <div class="p-col-12 p-md-10 ui-fluid">
+          <label>Logradouro </label>
+          <input type="text" pInputText class="form-control" name="logradouro"
+              ngModel #logradouro="ngModel" required="true" minlength="5">
+              <app-message [controle]="logradouro" error="required" texto="Informe o logradouro"></app-message>
+              <app-message [controle]="logradouro" error="minlength" texto="Minimo de {{ logradouro.errors?.minlength?.requiredLength }} caracteres"></app-message>
+        </div>
+
+        <div class="p-col-12 p-md-10 ui-fluid">
+          <label>Complemento </label>
+          <input type="text" pInputText class="form-control" name="complemento"
+              [(ngModel)]="complemento">
+        </div>
+
+        <div class="p-col-12 p-md-2 ui-fluid">
+          <label>Numero </label>
+          <input type="text" pInputText class="form-control" name="numero"
+              ngModel #numero="ngModel" required="true" minlength="1">
+              <app-message [controle]="numero" error="required" texto="Informe o numero"></app-message>
+              <app-message [controle]="numero" error="minlength" texto="Minimo de {{ numero.errors?.minlength?.requiredLength }} caracteres"></app-message>
+        </div>
+
+        <div class="p-col-12 p-md-5 ui-fluid">
+          <label>Bairro </label>
+          <input type="text" pInputText class="form-control" name="bairro"
+              ngModel #bairro="ngModel" required="true" minlength="3">
+              <app-message [controle]="bairro" error="required" texto="Informe o bairro"></app-message>
+              <app-message [controle]="bairro" error="minlength" texto="Minimo de {{ bairro.errors?.minlength?.requiredLength }} caracteres"></app-message>
+        </div>
+
+        <div class="p-col-4 p-md-5 ui-fluid">
+          <label>Cidade </label>
+          <p-dropdown name="cidade" [options]="cidades" [filter]="true"
+              ngModel #cidade="ngModel" required="true"  placeholder="Selecione"></p-dropdown>
+              <app-message [controle]="cidade" error="required" texto="Informe a cidade"></app-message>
+        </div>
+
+        <div class="p-col-12 p-md-2 ui-fluid">
+          <label>Estados </label>
+          <p-dropdown name="estado" [options]="estados" [filter]="true"
+              [(ngModel)]="estado" placeholder="Selecione"></p-dropdown>
+        </div>
+
+        <div class="p-col-1">
+          <button pButton type="submit" label="salvar" disabled="{{ clienteForm.invalid && clienteForm.dirty }}"></button>
+        </div>
+
+        <div class="p-col-3">
+          <button pButton type="button" label="Novo" class="ui-button-info"></button>
+          <label style="margin-left: 13px;"><a  routerLink="/clientes">Voltar para pesquisa</a></label>
+        </div>
+
+      </div>
+  </form>
+</div>

@@ -1,0 +1,60 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #404C51;
+}
+
+label {
+  font-weight: bold;
+}
+
+a {
+  color: #337ab7;
+  text-decoration: none;
+}
+
+/*Se refere ao filter do dropdown para ocupar 100% do espaço do elemento */
+.ui-dropdown-filter-container {
+  width: 100%;
+}
+
+a:hover, a:focus {
+  text-decoration: underline;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1070px;
+    margin: 0 auto;
+  }
+}
+
+.col-valor-header {
+  width: 120px;
+}
+.col-valor-content {
+  text-align: right;
+}
+
+.col-data-header {
+  width: 120px;
+}
+
+.col-data-content {
+  text-align: center;
+}
+.col-acoes {
+  width: 100px;
+  text-align: center;
+}
+
+body .ui-messages.ui-messages-error {
+  background-color: transparent;
+  border: 0 none;
+  color: red;
+  margin: 0px;
+  margin-left: 0px;
+  padding-left: 0px;
+  padding-top: 3px;
+}

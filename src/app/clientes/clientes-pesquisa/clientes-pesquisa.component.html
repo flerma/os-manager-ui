@@ -1,0 +1,40 @@
+<div class="container">
+
+  <div class="p-grid">
+
+    <div class="p-col-12">
+      <h1>Clientes</h1>
+    </div>
+
+    <div class="p-col-12 ui-fluid">
+      <label>Nome </label>
+      <input type="text" pInputText />
+    </div>
+
+    <div class="p-col-12 ui-fluid">
+      <label>Bairro </label>
+      <input type="text" pInputText />
+    </div>
+
+
+    <div class="p-col-12">
+      <label style="display: block">Data de Cadastro </label>
+      <input pInputText type="text" style="width: 95px;" />
+
+      <label> até </label>
+      <input pInputText type="text" style="width: 95px;" />
+    </div>
+
+    <div class="p-col-12">
+      <button pButton type="submit" label="Pesquisar" ></button>
+    </div>
+
+  </div>
+
+  <app-clientes-grid [clientes]="clientes"></app-clientes-grid>
+
+  <div class="p-col-12">
+    <button pButton routerLink="/clientes/novo" label="Novo Cliente" ></button>
+  </div>
+
+</div>

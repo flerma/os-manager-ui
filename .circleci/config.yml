@@ -43,11 +43,11 @@ jobs:
                 name: angular-build
                 command: |
                     if [ "${CIRCLE_BRANCH}" == "staging" ]; then
-                        ng build --prod
+                        npm run build --prod
                     elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-                        ng build --prod
+                        npm run build --prod
                     else
-                        ng build --dev
+                        npm run build --dev
                     fi
             # Cache the dist folder for the deploy job
             - save_cache:

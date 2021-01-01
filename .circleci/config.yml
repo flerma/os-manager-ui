@@ -75,19 +75,20 @@ jobs:
                 command:
                     sudo apt-get -y -qq install awscli
             # Set the signature version for the S3 auth
-            - run:
-                name: Setting Signature Version 4 for S3 Request Authentication
-                command: aws configure set default.s3.signature_version s3v4
+            - aws-cli/setup:
+                aws-access-key-id: $AwsAccessKeyID
+                aws-region: $AwsRegion
+                aws-secret-access-key: $AwsSecretAccessKey
             # Deploy to the S3 bucket corresponding to the current branch
             - run:
                 name: Deploy to S3
                 command: |
                     if [ "${CIRCLE_BRANCH}" == "develop" ]; then
-                        aws --region eu-west-2 s3 sync dist s3://os-manager-ui-dev/ --delete
+                        aws --region $AwsRegion s3 sync dist s3://os-manager-ui-dev/ --delete
                     elif [ "${CIRCLE_BRANCH}" == "staging" ]; then
-                        aws --region eu-west-2 s3 sync dist s3://os-manager-ui-qa/ --delete
+                        aws --region $AwsRegion s3 sync dist s3://os-manager-ui-qa/ --delete
                     elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-                        aws --region eu-west-2 s3 sync dist s3://os-manager-ui/ --delete
+                        aws --region $AwsRegion s3 sync dist s3://os-manager-ui/ --delete
                     fi
 workflows:
     version: 2

@@ -5,7 +5,7 @@ jobs:
     build:
         working_directory: ~/os-manager-ui
         docker:
-            - image: circleci/node:6.10-browsers
+            - image: circleci/node:10-browsers-legacy
         steps:
             # Checkout the code from the branch into the working_directory
             - checkout

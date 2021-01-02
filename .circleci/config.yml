@@ -79,42 +79,14 @@ jobs:
                     sudo apt-get -y -qq install awscli
             # Set the signature version for the S3 auth
             - run:
-                command: export AWS_ACCESS_KEY_ID=$AwsAccessKeyID
-                name: Configure AWS Access Key ID
-            - run:
-                command: AWS_SECRET_ACCESS_KEY=$AwsSecretAccessKey
-                name: Configure AWS Secret Access Key
-            - run:
-                command: export AWS_DEFAULT_REGION=$AwsRegion
-                name: Configure AWS default region
-
-            # - run:
-            #     command: |
-            #         aws configure set aws_access_key_id \
-            #           $AwsAccessKeyID \
-            #           --profile default
-            #     name: Configure AWS Access Key ID
-            # - run:
-            #     command: |
-            #         aws configure set aws_secret_access_key \
-            #           $AwsSecretAccessKey \
-            #           --profile default
-            #     name: Configure AWS Secret Access Key
-            # - run:
-            #     command: |
-            #         aws configure set default.region $AwsRegion \
-            #           --profile default
-            #     name: Configure AWS default region
-            # Deploy to the S3 bucket corresponding to the current branch
-            - run:
                 name: Deploy to S3
                 command: |
                     if [ "${CIRCLE_BRANCH}" == "develop" ]; then
-                        aws -profile MyProfileName s3 sync dist s3://os-manager-ui-dev/ --delete
+                        aws --access_key $AwsSecretAccessKey --secret_key $AwsSecretAccessKey --region $AwsRegion s3 sync dist s3://os-manager-ui-dev/ --delete
                     elif [ "${CIRCLE_BRANCH}" == "staging" ]; then
-                        aws --region $AwsRegion s3 sync dist s3://os-manager-ui-qa/ --delete
+                        aws --access_key $AwsSecretAccessKey --secret_key $AwsSecretAccessKey --region $AwsRegion s3 sync dist s3://os-manager-ui-qa/ --delete
                     elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-                        aws --region $AwsRegion s3 sync dist s3://os-manager-ui/ --delete
+                        aws --access_key $AwsSecretAccessKey --secret_key $AwsSecretAccessKey --region $AwsRegion s3 sync dist s3://os-manager-ui/ --delete
                     fi
 workflows:
     version: 2

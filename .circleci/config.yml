@@ -1,4 +1,7 @@
-version: 2
+version: 2.1
+
+orbs:
+  aws-cli: circleci/aws-cli@1.3.1
 
 jobs:
     # The build job
@@ -75,10 +78,23 @@ jobs:
                 command:
                     sudo apt-get -y -qq install awscli
             # Set the signature version for the S3 auth
-            - aws-cli/setup:
-                aws-access-key-id: $AwsAccessKeyID
-                aws-region: $AwsRegion
-                aws-secret-access-key: $AwsSecretAccessKey
+            - run:
+                command: |
+                    aws configure set aws_access_key_id \
+                      $AwsAccessKeyID \
+                      --profile default
+                name: Configure AWS Access Key ID
+            - run:
+                command: |
+                    aws configure set aws_secret_access_key \
+                      $AwsSecretAccessKey \
+                      --profile default
+                name: Configure AWS Secret Access Key
+            - run:
+                command: |
+                    aws configure set default.region $AwsRegion \
+                      --profile default
+                name: Configure AWS default region
             # Deploy to the S3 bucket corresponding to the current branch
             - run:
                 name: Deploy to S3
